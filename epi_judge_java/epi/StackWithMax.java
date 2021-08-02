@@ -5,30 +5,35 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class StackWithMax {
 
     public static class Stack {
+        private final Deque<int[]> stack;
+
+        public Stack() {
+            stack = new ArrayDeque<>();
+        }
+
         public boolean empty() {
-            // TODO - you fill in here.
-            return true;
+            return stack.isEmpty();
         }
 
         public Integer max() {
-            // TODO - you fill in here.
-            return 0;
+            assert stack.peek() != null;
+            return stack.peek()[1];
         }
 
         public Integer pop() {
-            // TODO - you fill in here.
-            return 0;
+            return stack.pop()[0];
         }
 
         public void push(Integer x) {
-            // TODO - you fill in here.
-            return;
+            int[] curr = new int[]{x, x};
+            Optional.ofNullable(stack.peek())
+                    .ifPresent((val) -> curr[1] = Math.max(val[1], curr[1]));
+            stack.push(curr);
         }
     }
 

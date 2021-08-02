@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
-public class GenericTest {
+public class  GenericTest {
   /**
    * The main test starter. Is intended to be called from {@link
    * #runFromAnnotations(String[], String, Class)}.

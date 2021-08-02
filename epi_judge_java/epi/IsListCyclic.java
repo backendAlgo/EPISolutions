@@ -8,7 +8,30 @@ import epi.test_framework.TimedExecutor;
 public class IsListCyclic {
 
     public static ListNode<Integer> hasCycle(ListNode<Integer> head) {
-        // TODO - you fill in here.
+        ListNode<Integer> fast = head;
+        ListNode<Integer> slow = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                int cycleLen = 0;
+                do {
+                    cycleLen++;
+                    fast = fast.next;
+                } while (fast != slow);
+                ListNode<Integer> temp = head;
+                while (cycleLen-- > 0) {
+                    temp = temp.next;
+                }
+                ListNode<Integer> itr = head;
+                while (itr != temp) {
+                    itr = itr.next;
+                    temp = temp.next;
+                }
+                return itr;
+            }
+        }
+
         return null;
     }
 

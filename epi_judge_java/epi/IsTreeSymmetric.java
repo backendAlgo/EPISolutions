@@ -7,8 +7,23 @@ public class IsTreeSymmetric {
     @EpiTest(testDataFile = "is_tree_symmetric.tsv")
 
     public static boolean isSymmetric(BinaryTreeNode<Integer> tree) {
-        // TODO - you fill in here.
-        return true;
+        if (tree == null)
+            return true;
+        return util(tree.left, tree.right);
+    }
+
+    private static boolean util(BinaryTreeNode<Integer> left,
+                                BinaryTreeNode<Integer> right) {
+        if (left == null && right == null)
+            return true;
+        else if (left == null || right == null)
+            return false;
+        if (!left.data.equals(right.data))
+            return false;
+        boolean leftVal = util(left.left, right.right);
+        if (!leftVal)
+            return false;
+        return util(left.right, right.left);
     }
 
     public static void main(String[] args) {

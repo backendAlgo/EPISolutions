@@ -8,7 +8,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.BiPredicate;
 
-public class EnumerateBalancedParentheses {
+public class
+EnumerateBalancedParentheses {
     @EpiTest(testDataFile = "enumerate_balanced_parentheses.tsv")
 
     public static List<String> generateBalancedParentheses(int numPairs) {

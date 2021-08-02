@@ -24,7 +24,7 @@ class Team {
 
     public Team(List<Integer> height) {
         players =
-                height.stream().map(h -> new Player(h)).collect(Collectors.toList());
+                height.stream().map(Player::new).collect(Collectors.toList());
     }
 
     // Checks if team0 can be placed in front of team1.

@@ -12,8 +12,32 @@ public class DutchNationalFlag {
     public enum Color {RED, WHITE, BLUE}
 
     public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
-        // TODO - you fill in here.
-        return;
+        int len = A.size();
+        Color pivot = A.get(pivotIndex);
+        swap(pivotIndex, len - 1, A);
+        int correctIndex = 0;
+        Color curr;
+        int size=0;
+        for (int i = 0; i < len - 1; i++) {
+            curr = A.get(i);
+            if (curr==pivot) {
+                size++;
+                swap(correctIndex, i, A);
+                correctIndex++;
+            } else if (pivot.ordinal() > curr.ordinal()) {
+                swap(correctIndex, i, A);
+                swap(correctIndex, correctIndex-size, A);
+                correctIndex++;
+            }
+        }
+        swap(correctIndex, len-1, A);
+    }
+
+    private static void swap(int a, int r, List<Color> arr) {
+        if (a == r) return;
+        Color temp = arr.get(a);
+        arr.set(a, arr.get(r));
+        arr.set(r, temp);
     }
 
     @EpiTest(testDataFile = "dutch_national_flag.tsv")
@@ -24,9 +48,9 @@ public class DutchNationalFlag {
         int[] count = new int[3];
 
         Color[] C = Color.values();
-        for (int i = 0; i < A.size(); i++) {
-            count[A.get(i)]++;
-            colors.add(C[A.get(i)]);
+        for (Integer integer : A) {
+            count[integer]++;
+            colors.add(C[integer]);
         }
 
         Color pivot = colors.get(pivotIdx);
